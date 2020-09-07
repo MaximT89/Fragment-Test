@@ -4,18 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".WorkoutDetailFragment">
+    tools:context=".WorkoutDetailFragment"
+    android:padding="16dp"
+    >
 
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="" />
+        android:text="Test" />
 
     <TextView
+        android:layout_marginTop="8dp"
         android:id="@+id/textDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="Test" />
 </LinearLayout>
