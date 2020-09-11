@@ -3,7 +3,9 @@ package com.example.testfragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements WorkoutListFragment.WorkoutListListener {
 
@@ -15,12 +17,20 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
 
     @Override
     public void itemClicked(long id) {
-        WorkoutDetailFragment details = new WorkoutDetailFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        details.setWorkout(id);
-        ft.replace(R.id.fragment_container, details);
-        ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+        View fragmentContainer = findViewById(R.id.fragment_container);
+        if(fragmentContainer != null){
+            WorkoutDetailFragment details = new WorkoutDetailFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            details.setWorkout(id);
+            ft.replace(R.id.fragment_container, details);
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
+        } else {
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra(DetailActivity.EXTRA_WORKOUT_ID, (int)id);
+
+            startActivity(intent);
+        }
     }
 }
